@@ -34,14 +34,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private employeeService: EmployeeService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.form = new EmployeeTypeform(this.formBuilder.group(<Fields<Employee>>{
-      firstName: ['', Validators.compose([Validators.required, notInArray(this.employeeService.getFirstNames())])],
-      lastName: ['', Validators.required],
-      endOfContract: [null, isDateValid()],
-      workdayStart: [{ hour: 8, minute: 0, second: 0 }, Validators.required],
-      workdayEnd: [null, Validators.compose([Validators.required, checkTimeDIff(() => this.form && this.form.workdayStart, () => this.form && this.form.nightwork)])],
-      nightwork: [false]
-    }));
+    this.form = new EmployeeTypeform(this.formBuilder, this.employeeService);
 
     this.revalidateWorkdayEndSubscription =
       this.form.workdayStart$.combineLatest(this.form.nightwork$)
