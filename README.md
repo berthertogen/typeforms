@@ -1,4 +1,3 @@
-----------
 # Statically-Typed Angular Reactive Forms (Typeforms)
 
 ## Usage
@@ -76,7 +75,7 @@ To consume the fields in your HTML :
 To manually trigger validation of the form
 
 ```ts
-    this.form.validate({...props}); // 0 or more statically-analyzed form fields (0 = entire form validation)
+    this.form.validate([...props]); // 0 or more statically-analyzed form fields (0 = entire form validation)
 
 ```
 To observe changes in a form field
